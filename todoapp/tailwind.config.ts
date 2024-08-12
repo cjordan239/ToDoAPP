@@ -13,8 +13,12 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        brush: ['"Brush Script MT"', 'cursive'],
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
