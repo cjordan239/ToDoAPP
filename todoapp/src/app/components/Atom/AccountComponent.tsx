@@ -2,11 +2,7 @@ import React from 'react'
 
 const AccountComponent = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-        <div>
-          
-        </div>
-    </div>
+    <div>AccountComponent</div>
   )
 }
 
