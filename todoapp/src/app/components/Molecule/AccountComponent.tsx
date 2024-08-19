@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Formik, Form } from "formik";
 import { AccountSchema } from "../Atom/Schema";
@@ -13,9 +13,14 @@ interface MyFormProps {
 }
 
 const AccountSignUp = () => {
-  const initialValues: MyFormProps = { username: "", password: "", email: "" };
+  const [signUpData, setSignUpData] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+  const [login, setLogin] = useState(false);
 
-  const handleSignUp = () => {};
+  const handleSignUp = async (values) => {};
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -29,28 +34,14 @@ const AccountSignUp = () => {
         <h2 className="font-brush">signUp</h2>
         <div className="flex justify-center items-center">
           <Formik
-            initialValues={initialValues}
+            initialValues={signUpData}
             validationSchema={AccountSchema}
             onSubmit={handleSignUp}
           >
             <Form>
-              <FormField
-                label="Username"
-                name="username"
-         
-              />
-              <FormField
-                label="Password"
-                name="password"
-                type="password"
-            
-              />
-              <FormField
-                label="Email"
-                name="email"
-                type="email"
-            
-              />
+              <FormField label="Username" name="username" />
+              <FormField label="Password" name="password" type="password" />
+              <FormField label="Email" name="email" type="email" />
               <button
                 type="submit"
                 className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
