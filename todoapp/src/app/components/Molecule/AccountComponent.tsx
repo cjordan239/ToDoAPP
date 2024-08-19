@@ -13,14 +13,9 @@ interface MyFormProps {
 }
 
 const AccountSignUp = () => {
-  const [signUpData, setSignUpData] = useState({
-    username: "",
-    password: "",
-    email: "",
-  });
   const [login, setLogin] = useState(false);
 
-  const handleSignUp = async (values) => {};
+  const handleSignUp = async (v) => {};
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
