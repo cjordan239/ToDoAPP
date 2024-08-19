@@ -5,6 +5,8 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Formik, Form } from "formik";
 import { AccountSchema } from "../Atom/Schema";
 import FormField from "../Atom/FormField";
+import axios from "axios";
+import { STATUS_CODES } from "http";
 
 interface MyFormProps {
   username: string;
@@ -14,8 +16,27 @@ interface MyFormProps {
 
 const AccountSignUp = () => {
   const [login, setLogin] = useState(false);
+  
+  const initialValue = {username:"", password:'', email:''}
 
-  const handleSignUp = async (v) => {};
+  const handleSignUp = async (values: MyFormProps) => {
+    try {
+      const response = await axios.post("http://localhost:3001/users/signUp", values);
+      if (response.status === 201) {
+        console.log(values);
+        setLogin(!false)
+      } else {
+        console.log("Received a different status code:", response.status);
+      }
+    } catch (error) {
+      console.error("Error during sign-up:", error);
+      alert("An error occurred during sign-up.");
+    }
+  }
+  
+
+    
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -29,7 +50,7 @@ const AccountSignUp = () => {
         <h2 className="font-brush">signUp</h2>
         <div className="flex justify-center items-center">
           <Formik
-            initialValues={signUpData}
+            initialValues={initialValue}
             validationSchema={AccountSchema}
             onSubmit={handleSignUp}
           >
