@@ -1,5 +1,5 @@
 import React from 'react'
-import AccountSignUp from '../components/Molecule/AccountComponent'
+import AccountSignUp from '../components/Molecule/AccountComponentSignUp'
 
 const SignUpPage = () => {
 
