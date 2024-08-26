@@ -3,21 +3,38 @@
 import React, { useState } from "react";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Formik, Form } from "formik";
-import { AccountSchema } from "../Atom/Schema";
+import { AccountSigninSchema } from "../Atom/Schema";
 import FormField from "../Atom/FormField";
 import axios from "axios";
+
+interface signInProps {
+  username:string,
+  password: string
+}
 
 const AccountSignIn = () => {
   const [login, setLogin] = useState(false);
   const initialValue = { username: "", password: "" };
 
-  const handleSubmit = () => {
-    try{
-        
+  const handleSubmit = async (values: signInProps) => {
+    try {
+      const response = await axios.post("http://localhost:3001/users/signin", values);
+      console.log("Response status:", response.status);
+      console.log("Response data:", response.data);
+  
+      if (response.status === 200) {
+        setLogin(true);
+        console.log("Login succeeded:", values);
+      } else {
+        console.log("Login failed with status:", response.status);
+        alert("Login failed: Incorrect username or password.");
+      }
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+      alert("An error occurred during sign-in.");
     }
-         
-    
-  }
+  };
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -27,12 +44,12 @@ const AccountSignIn = () => {
             <ListAltIcon className="mr-2" />
             <h1 className=" font-bold">Todo Daily</h1>
           </div>
-          <h2 className="font-brush">signUp</h2>
+          <h2 className="font-brush">signIn</h2>
         </div>
         <div className="flex justify-center items-center">
           <Formik
             initialValues={initialValue}
-            validationSchema={AccountSchema}
+            validationSchema={AccountSigninSchema}
             onSubmit={handleSubmit}
           >
             <Form>

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import { Formik, Form } from "formik";
-import { AccountSchema } from "../Atom/Schema";
+import { AccountSignupSchema } from "../Atom/Schema";
 import FormField from "../Atom/FormField";
 import axios from "axios";
 
@@ -46,7 +46,7 @@ const AccountSignUp = () => {
         <div className="flex justify-center items-center">
           <Formik
             initialValues={initialValue}
-            validationSchema={AccountSchema}
+            validationSchema={AccountSignupSchema}
             onSubmit={handleSignUp}
           >
             <Form>
