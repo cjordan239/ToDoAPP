@@ -34,7 +34,7 @@ const signInUser = async (req, res) => {
     if(isValidUser){
       return res.status(200).send("succed login")
     } else {
-      return res.send("invalid credential")
+      return res.status(401).send("invalid credential")
     }
   } catch (err) {
     res.status(500).send (err.message);
