@@ -1,4 +1,4 @@
-const { SignUpQueries, getUserFromDb, SignInQueries } = require("../Queries/userQueries");
+const { signUpQueries, getUserFromDb, signInQueries } = require("../Queries/userQueries");
 
 const getUser = async (req, res) => {
   try {
@@ -16,7 +16,7 @@ const signUpUser = async (req, res) => {
     if (!username || !password || !email) {
       return res.status(400).send("fill out the form");
     }
-    const data = await SignUpQueries(username, password, email);
+    const data = await signUpQueries(username, password, email);
     res.status(201).json({ message: "user created", data });
   } catch (err) {
     res.status(500).send("error");
@@ -31,14 +31,13 @@ const signInUser = async (req, res) => {
       return res.status(400).send("fill the form");
     }
     const isValidUser = await signInQueries(username, password);
-    if(isValidUser) {
+    if(isValidUser){
       return res.status(200).send("succed login")
     } else {
       return res.send("invalid credential")
     }
   } catch (err) {
-    console.error("Error:", err); // Debugging line
-    res.status(500).send("Error: " + err.message);
+    res.status(500).send (err.message);
   }
 };
 

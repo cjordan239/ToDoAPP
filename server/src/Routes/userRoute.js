@@ -1,5 +1,5 @@
 const express = require("express");
-const { postUser, getUser} = require("../controllers/users");
+const { signUpUser, getUser, signInUser} = require("../controllers/users");
 const { userSignUpSchema, userSignInSchema } = require("../schema/userSchema");
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.post('/signup', (req, res)=> {
         return res.status(400).json({message: error.details})
     }
 
-    postUser(req,res)
+    signUpUser(req,res)
 });
 
 router.post('/signin', (req, res) => {
@@ -22,6 +22,8 @@ router.post('/signin', (req, res) => {
     if (error){
         return res.status(400).json({message: error.details})
     }
+
+    signInUser(req,res)
 })
 
 module.exports = router;
