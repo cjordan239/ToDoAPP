@@ -1,8 +1,7 @@
 import React from 'react'
-import NavigationBar from '../components/Molecule/NavigationBar'
 const DasboardPage = () => {
   return (
-    <div><NavigationBar/></div>
+    <div> ini dashboard </div>
   )
 }
 
