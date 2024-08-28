@@ -32,7 +32,7 @@ const signInUser = async (req, res) => {
     }
     const isValidUser = await signInQueries(username, password);
     if(isValidUser){
-      return res.status(200).send("succed login")
+      return res.status(200).send("succed login", isValidUser.id)
     } else {
       return res.status(401).send("invalid credential")
     }
