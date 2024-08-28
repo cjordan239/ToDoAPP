@@ -19,11 +19,13 @@ const AccountSignIn = () => {
   const handleSubmit = async (values: signInProps) => {
     try {
       const response = await axios.post("http://localhost:3001/users/signin", values);
+      const user_id = response.data.id
       console.log("Response status:", response.status);
       console.log("Response data:", response.data);
   
       if (response.status === 200) {
         setLogin(true);
+        localStorage.setItem("userid", user_id)
         console.log("Login succeeded:", values);
       } else {
         console.log("Login failed with status:", response.status);
