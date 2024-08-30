@@ -16,3 +16,10 @@ export const AccountSigninSchema = Yup.object().shape({
     .required("Required"),
   password: Yup.string().min(2, "too short").required("Required"),
 });
+
+export const TodoInputSchema = Yup.object().shape({
+  title: Yup.string().required("required"),
+  content: Yup.string().required("required")
+})
+
+
